@@ -3,6 +3,7 @@
 
 import unittest
 import subprocess
+import sys
 import echo
 
 
@@ -10,7 +11,11 @@ import echo
 class TestEcho(unittest.TestCase):
     
     def setUp(self):
+        ''' This function is called only once for all tests '''
         self.parser = echo.create_parser()
+        self.pystring = 'python2'
+        if sys.version_info[0] == 3:
+            self.pystring = 'python3'
 
     def test_help(self):
         """ Running the program without arguments should show usage. """
